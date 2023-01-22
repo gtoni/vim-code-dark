@@ -129,6 +129,7 @@ let s:cdViolet = {'gui': '#646695', 'cterm': s:cterm04, 'cterm256': '60'}
 let s:cdBlue = {'gui': '#569CD6', 'cterm': s:cterm0D, 'cterm256': '75'}
 let s:cdDarkBlue = {'gui': '#223E55', 'cterm': s:cterm0D, 'cterm256': '73'}
 let s:cdLightBlue = {'gui': '#9CDCFE', 'cterm': s:cterm0C, 'cterm256': '117'}
+let s:cdEnumBlue = {'gui': '#1EC3FB', 'cterm': s:cterm0D, 'cterm256': '75'}
 if g:codedark_conservative | let s:cdLightBlue = s:cdFront | endif
 let s:cdGreen = {'gui': '#6A9955', 'cterm': s:cterm0B, 'cterm256': '65'}
 let s:cdBlueGreen = {'gui': '#4EC9B0', 'cterm': s:cterm0F, 'cterm256': '43'}
@@ -225,7 +226,7 @@ call <sid>hi('Structure', s:cdBlue, {}, 'none', {})
 call <sid>hi('Typedef', s:cdBlue, {}, 'none', {})
 
 call <sid>hi('Special', s:cdYellowOrange, {}, 'none', {})
-call <sid>hi('SpecialChar', s:cdFront, {}, 'none', {})
+call <sid>hi('SpecialChar', s:cdOrange, {}, 'none', {})
 call <sid>hi('Tag', s:cdFront, {}, 'none', {})
 call <sid>hi('Delimiter', s:cdFront, {}, 'none', {})
 if g:codedark_italics | call <sid>hi('SpecialComment', s:cdGreen, {}, 'italic', {}) | else | call <sid>hi('SpecialComment', s:cdGreen, {}, 'none', {}) | endif
@@ -585,6 +586,14 @@ highlight def link CTagsFunction Function
 highlight def link CTagsMember Identifier
 
 " C++ color_coded
+call <sid>hi('Member', s:cdLightBlue, {}, 'none', {})
+call <sid>hi('Variable', s:cdLightBlue, {}, 'none', {})
+call <sid>hi('Parameter', s:cdGray, {}, 'none', {})
+    
+call <sid>hi('Function', s:cdYellow, {}, 'none', {})
+call <sid>hi('cppOperator', s:cdYellow, {}, 'none', {})
+
+
 call <sid>hi('StructDecl', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('UnionDecl', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('ClassDecl', s:cdBlueGreen, {}, 'none', {})
@@ -592,6 +601,7 @@ call <sid>hi('TypeRef', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('TypedefDecl', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('TypeAliasDecl', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('EnumDecl', s:cdBlueGreen, {}, 'none', {})
+call <sid>hi('EnumConstant', s:cdEnumBlue, {}, 'none', {})
 call <sid>hi('TemplateTypeParameter', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('TypeAliasTemplateDecl', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('ClassTemplate', s:cdBlueGreen, {}, 'none', {})
@@ -602,7 +612,7 @@ call <sid>hi('TemplateTemplateParameter', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('UsingDeclaration', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('MemberRef', s:cdLightBlue, {}, 'italic', {})
 call <sid>hi('MemberRefExpr', s:cdYellow, {}, 'italic', {})
-call <sid>hi('Namespace', s:cdSilver, {}, 'none', {})
+call <sid>hi('Namespace', s:cdBlueGreen, {}, 'none', {})
 call <sid>hi('NamespaceRef', s:cdSilver, {}, 'none', {})
 call <sid>hi('NamespaceAlias', s:cdSilver, {}, 'none', {})
 
@@ -618,6 +628,26 @@ call <sid>hi('LspCxxHlSymNamespace', s:cdSilver, {}, 'none', {})
 " Coc Explorer:
 call <sid>hi('CocHighlightText', {}, s:cdSelection, 'none', {})
 call <sid>hi('CocExplorerIndentLine', s:cdCursorDark, {}, 'none', {})
+
+call <sid>hi('cppStatement', s:cdPink, {}, 'none', {})
+call <sid>hi('cCppOut', s:cdGray, {}, 'none', {})
+
+hi link cppAccess Type
+
+hi link CocErrorHighlight Error
+
+hi link CocSemVariable Variable
+hi link CocSemParameter Parameter
+hi link CocSemNamespace Namespace
+hi link CocSemEnumMember EnumConstant
+
+hi link CocSemFunction Function
+hi link CocSemMethod Function
+
+hi link CocSemClass ClassDecl
+hi link CocSemEnum EnumDecl
+hi link CocSemTypeParameter TemplateTypeParameter
+hi link CocSemComment cCppOut
 
 " nvim-cmp
 call <sid>hi('CmpItemAbbrDeprecated', s:cdGray, {}, 'none', {})
